@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <div class="todo">
+            <header>
+                <h1>TODO</h1>
+                <button class="switch">
+                    <img class="sun-img active" alt="day-mode" src="img/icon/sun.png">
+                    <img class="moon-img" alt="night-mode" src="img/icon/moon.png">
+                </button>
+            </header>
+            <section class="todo__input">
+                <span class="todo__add"><img class="todo__arrow" alt="arrowdown" src="img/icon/plus.jpg"></span>
+                <input class="todo__text" type="text" placeholder="Create a new todo…">
+            </section>
+            <section class="todo__list">
+                <ul class="todo__items" data-todo-option="active">
+                    <li class="todo__item undone">
+                        <div class="todo__done"><img class="v" alt="done" src="img/icon/done.png"></div>
+                        <p class="todo__task ">Walk to do</p>
+                        <img class="todo__delete">
+                    </li>
+                    <li class="todo__item undone">
+                        <div class="todo__done"><img class="v" alt="done" src="img/icon/done.png"></div>
+                        <p class="todo__task ">Check Krisha.kz</p>
+                        <img class="todo__delete">
+                    </li>
+                    <li class="todo__item undone">
+                        <div class="todo__done"><img class="v" alt="done" src="img/icon/done.png"></div>
+                        <p class="todo__task ">Do the homework for more pore</p>
+                        <img class="todo__delete">
+                    </li>
+                    <li class="todo__item done">
+                        <div class="todo__done"><img class="v" alt="done" src="img/icon/done.png"></div>
+                        <p class="todo__task">Read book "Shantaram"</p>
+                        <img class="todo__delete">
+                    </li>
+                    <li class="todo__item done">
+                        <div class="todo__done"><img class="v" alt="done" src="img/icon/done.png"></div>
+                        <p class="todo__task">Eat breakfast</p>
+                        <img class="todo__delete">
+                    </li>
+                </ul>
+            </section>
+            <section class="todo__info">
+                <span class="todo__quantity"><span>items left</span></span>
+                <ul class="todo__options">
+                    <li class="todo__option all blue">All</li>
+                    <li class="todo__option active">Active</li>
+                    <li class="todo__option finished">Completed</li>
+                </ul>
+                <span class="todo__clear">Clear Complated</span>
+            </section>
+        </div>
+        <span class="footer">Drag and drop to reorder list</span>
+    </main>
+    <script src="js/app.js"></script>
+</body>
+</html>
