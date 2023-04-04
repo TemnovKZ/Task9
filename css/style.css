@@ -80,7 +80,7 @@ body {
 main {
   height: 100%;
   width: 100%;
-  background-image: url(/img/night-bg.jpg);
+  background-image: url(../img/night-bg.jpg);
   background-repeat: no-repeat;
   background-position: top;
   background-size: 100% 43%;
