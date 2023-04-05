@@ -372,7 +372,6 @@ h1 {
   color: #5B5E7E;
   text-align: center;
 }
-<<<<<<< HEAD
 
 /*----------------------switch--------------------*/
 .day {
@@ -398,6 +397,9 @@ h1 {
 }
 .day .todo__info {
   background-color: #FFFFFF;
+}
+.day .todo__option:hover {
+  color: #494C6B;
 }
 .day .done .todo__task {
   -webkit-text-decoration: line-through #D1D2DA;
@@ -444,5 +446,3 @@ h1 {
     font-size: 12px;
   }
 }
-=======
->>>>>>> 4c26651be26705511c17ea46a2ef2da4fd0d8d04
