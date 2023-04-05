@@ -5,12 +5,27 @@ let optionGener = document.querySelector('.todo__options');
 let clearDone = document.querySelector('.todo__clear');
 let numItems = document.querySelector('.todo__quantity')
 let todosUnDone = document.getElementsByClassName('undone');
+let switchTheme = document.querySelector('.switch');
+let mainTheme = document.querySelector('main');
 
 
-window.addEventListener('click', itemsCol);
+todoList.addEventListener('click', itemsCol);
 todoButton.addEventListener('click', addTodo);
 todoList.addEventListener('click', deleteCheck);
 clearDone.addEventListener('click', clearDoneTasks);
+
+// switch theme
+
+switchTheme.addEventListener('click', function() {
+    mainTheme.classList.toggle('day');
+    if(mainTheme.classList.contains('day')) {
+        document.querySelector('.sun-img').classList.remove('active')
+        document.querySelector('.moon-img').classList.add('active')
+    } else {
+        document.querySelector('.moon-img').classList.remove('active')
+        document.querySelector('.sun-img').classList.add('active')
+    }
+});
 
 
 // add tasks
@@ -35,7 +50,6 @@ function addTodo(e) {
     let deleteTask = document.createElement('img');
     deleteTask.classList.add('todo__delete');
 
-    
 
     todoDiv.appendChild(deleteTask);
     todoList.appendChild(todoDiv);
