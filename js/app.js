@@ -3,16 +3,16 @@ let todoButton = document.querySelector('.todo__add');
 let todoList = document.querySelector('.todo__items');
 let optionGener = document.querySelector('.todo__options');
 let clearDone = document.querySelector('.todo__clear');
-let numItems = document.querySelector('.todo__quantity')
-let todosUnDone = document.getElementsByClassName('undone');
+let numItems = document.querySelector('.todo__quantity');
 let switchTheme = document.querySelector('.switch');
 let mainTheme = document.querySelector('main');
 
 
-todoList.addEventListener('click', itemsCol);
+window.addEventListener('click', itemsCol);
 todoButton.addEventListener('click', addTodo);
 todoList.addEventListener('click', deleteCheck);
 clearDone.addEventListener('click', clearDoneTasks);
+document.addEventListener("DOMContentLoaded", getLocalTodos);
 
 // switch theme
 
@@ -33,16 +33,18 @@ switchTheme.addEventListener('click', function() {
 function addTodo(e) {
     event.preventDefault();
 
-    const todoDiv = document.createElement("li");
+    saveLocalTodos(todoInput.value);
+
+    let todoDiv = document.createElement("li");
     todoDiv.classList.add("todo__item");
     todoDiv.classList.add("undone");
 
-    const completedButton = document.createElement("div");
+    let completedButton = document.createElement("div");
     completedButton.innerHTML = '<img class="v" alt="done" src="img/icon/done.png"></li>';
     completedButton.classList.add("todo__done");
     todoDiv.appendChild(completedButton);
 
-    const newTodo = document.createElement("p");
+    let newTodo = document.createElement("p");
     newTodo.innerText = todoInput.value; 
     newTodo.classList.add("todo__task");
     todoDiv.appendChild(newTodo);
@@ -70,6 +72,8 @@ function deleteCheck(e) {
 
         todo.addEventListener('transitionend', function() {
             todo.remove();
+            
+            removeLocalTodos(todo)
         });
     }
 
@@ -130,14 +134,79 @@ function filterChoise() {
     });
 };
 
-
 //items left
 
+
+let todosUnDone = document.getElementsByClassName('undone');
+
 function itemsCol() {
-    let todosUnDone = document.getElementsByClassName('undone');
     numItems.innerHTML = todosUnDone.length + ' items left'
 }
 numItems.innerHTML = todosUnDone.length + ' items left';
 
 
-//drop'n'drop
+
+
+//save local storage
+
+function saveLocalTodos(todo) {
+    let todos;
+
+    if (localStorage.getItem('todos') === null) {
+        todos = [];
+    } else {
+        todos = JSON.parse(localStorage.getItem('todos'));
+    }
+
+    todos.push(todo);
+    localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+function getLocalTodos() {
+    let todos;
+
+    if (localStorage.getItem('todos') === null) {
+        todos = [];
+    } else {
+        todos = JSON.parse(localStorage.getItem('todos'));
+    }
+
+    todos.forEach(todo => {
+        let todoDiv = document.createElement("li");
+        todoDiv.classList.add("todo__item");
+        todoDiv.classList.add("undone");
+
+        let completedButton = document.createElement("div");
+        completedButton.innerHTML = '<img class="v" alt="done" src="img/icon/done.png"></li>';
+        completedButton.classList.add("todo__done");
+        todoDiv.appendChild(completedButton);
+
+        let newTodo = document.createElement("p");
+        newTodo.innerText = todo;
+        newTodo.classList.add("todo__task");
+        todoDiv.appendChild(newTodo);
+
+        let deleteTask = document.createElement('img');
+        deleteTask.classList.add('todo__delete');
+        todoDiv.appendChild(deleteTask);
+
+        todoList.appendChild(todoDiv);
+    });
+}
+
+function removeLocalTodos(todo) {
+    let todos;
+    if(localStorage.getItem("todos") === null) {
+        todos = [];
+    } else {
+        todos = JSON.parse(localStorage.getItem("todos"));
+    }
+
+    const todoIndex = todo.innerText;
+    todos.splice(todos.indexOf(todoIndex), 1);
+    localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+window.onload = function() {
+    dragula([document.querySelector('.todo__items')]);
+}
